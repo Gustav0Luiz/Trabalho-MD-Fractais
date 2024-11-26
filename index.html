@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Fractais</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/assets/fractal_tree.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>Gerador de Fractais</h1>
+    </header>
+    <main class="layout-container">
+        <section class="options-container">
+            <div class="box-container">
+                <label for="axioma" class="item">Axioma:</label>
+                <input type="text" id="axioma" value="F" class="item input">
+            </div>
+            <div class="box-container">
+                <label for="regras" class="item">Regras (ex: F→F-F++F-F):</label>
+                <input type="text" id="regras" value="F→F-F++F-F" class="item input">
+            </div>
+            <div class="box-container">
+                <label for="angulo" class="item">Ângulo (em graus):</label>
+                <input type="number" id="angulo" value="60" class="item input">
+            </div>
+            <div class="action-container">
+                <p id="iterator_step">Etapa: 0</p>
+                <div class="buttons-container">
+                    <button id="btnRetroceder" class="btn">Step --</button>
+                    <button id="btnAvancar" class="btn">Step ++</button>
+                </div>
+            </div>
+            
+        </section>
+        <section class="canvas-container">
+            <canvas id="canvasFractal" width="800" height="600"></canvas>
+        </section>
+    </main>
+    <footer>
+        <p>Desenvolvido por Gustavo Luiz</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

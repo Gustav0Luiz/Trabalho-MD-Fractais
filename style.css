@@ -1,0 +1,127 @@
+/* Reset de estilos básicos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', 'Tahoma', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Layout geral */
+.layout-container {
+    display: flex;
+    justify-content: space-between; /* Espaço entre as seções */
+    align-items: flex-start; /* Alinha as seções ao topo */
+    gap: 20px; /* Espaçamento entre as seções */
+    max-width: 1200px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza o layout */
+    padding: 20px;
+}
+
+/* Seção de opções */
+.options-container {
+    flex: 1; /* Ocupa 1 parte proporcional do espaço disponível */
+    max-width: 400px; /* Limita a largura */
+    text-align: left; /* Alinha o texto à esquerda */
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: auto;
+}
+
+/* Caixa de entrada */
+.box-container {
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    margin-bottom: 15px;
+}
+
+.item {
+    margin: 5px 0;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+/* Caixa de ações: botão e etapa */
+.action-container {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    align-items: center; /* Centraliza os elementos horizontalmente */
+    margin-top: 20px; /* Espaçamento do topo */
+}
+
+/* Texto de etapa */
+#iterator_step {
+    font-size: 1.2em;
+    margin-bottom: 15px; /* Espaço entre o texto e os botões */
+    color: #555;
+}
+
+/* Contêiner dos botões */
+.buttons-container {
+    display: flex; /* Coloca os botões lado a lado */
+    justify-content: center; /* Centraliza os botões no contêiner */
+    gap: 15px; /* Espaçamento horizontal entre os botões */
+}
+
+/* Botões */
+.btn {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    color: #fff;
+    background: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+
+/* Seção do canvas */
+.canvas-container {
+    flex: 2; /* Ocupa 2 partes proporcionais do espaço disponível */
+    display: flex;
+    justify-content: center; /* Centraliza o canvas horizontalmente */
+    align-items: center; /* Centraliza o canvas verticalmente */
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #444;
+}
+
+
+/* Rodapé */
+footer {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #777;
+}
