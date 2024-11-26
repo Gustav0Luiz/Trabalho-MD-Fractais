@@ -5,10 +5,17 @@ const ctx = canvas.getContext('2d');
 let etapa = 0;
 let stringAtual = ''; // Base inicial para as iterações
 let historico = []; // Histórico das strings geradas
-let zoomHistorico = [1]; // Histórico do zoom para cada etapa
+let escalaFractal = 1; // Escala aplicada para o zoom
 const axiomaInput = document.getElementById('axioma'); // Axioma dinâmico
 const regrasInput = document.getElementById('regras');
 const anguloInput = document.getElementById('angulo');
+
+// Variáveis para o deslocamento do canvas
+let offsetX = 0;
+let offsetY = 0;
+let isDragging = false; // Indica se o usuário está arrastando
+let dragStartX = 0;
+let dragStartY = 0;
 
 // Função para aplicar as regras de substituição
 function aplicarRegras(string, regras) {
@@ -18,7 +25,6 @@ function aplicarRegras(string, regras) {
         regraMap[chave.trim()] = valor.trim();
     });
 
-    // Processa cada símbolo da string e aplica as regras, se existirem
     return string.split('').map(simbolo => regraMap[simbolo] || simbolo).join('');
 }
 
@@ -48,23 +54,21 @@ function calcularLimites(string, comprimentoSegmento) {
 }
 
 // Função para desenhar o fractal no canvas
-function desenharFractal(string, zoom) {
-    // Limpa o canvas e reseta transformações
+function desenharFractal(string) {
+    const comprimentoSegmento = 10; // Comprimento padrão do segmento
+
+    // Limpa o canvas e ajusta transformações
     ctx.resetTransform();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Aplica o zoom e calcula os limites
-    ctx.scale(zoom, zoom);
-    const comprimentoSegmento = 10; // Comprimento fixo dos segmentos
-    const { minX, maxX, minY, maxY } = calcularLimites(string, comprimentoSegmento);
-
-    // Centraliza o fractal no canvas
-    const offsetX = (canvas.width / (2 * zoom)) - ((maxX + minX) / 2);
-    const offsetY = (canvas.height / (2 * zoom)) - ((maxY + minY) / 2);
+    // Aplica o zoom e centralização
+    ctx.translate(canvas.width / 2, canvas.height / 2); // Centraliza o ponto inicial
+    ctx.scale(escalaFractal, escalaFractal); // Aplica o zoom
+    ctx.translate(offsetX, offsetY); // Aplica deslocamento
 
     // Inicializa posição e direção
-    let posX = offsetX;
-    let posY = offsetY;
+    let posX = 0;
+    let posY = 0;
     let direcao = 0;
 
     // Configuração inicial do desenho
@@ -95,9 +99,11 @@ function inicializarAxioma() {
     stringAtual = axioma; // Define o axioma como a configuração inicial
     historico = [axioma]; // Inicializa o histórico com o axioma
     etapa = 0; // Redefine a etapa
-    zoomHistorico = [1]; // Redefine o histórico de zoom
+    escalaFractal = 1; // Reseta a escala
+    offsetX = 0;
+    offsetY = 0; // Reseta deslocamento
     document.getElementById('iterator_step').textContent = `Etapa: ${etapa}`;
-    desenharFractal(stringAtual, 1);
+    desenharFractal(stringAtual);
 }
 
 // Evento para inicializar com o axioma
@@ -109,28 +115,70 @@ document.getElementById('btnAvancar').addEventListener('click', () => {
     stringAtual = aplicarRegras(stringAtual, regras);
     historico.push(stringAtual); // Salva no histórico
 
-    // Atualiza o zoom
-    if ((etapa + 1) % 5 === 0) {
-        zoomHistorico.push(zoomHistorico[zoomHistorico.length - 1] * 0.8); // Reduz zoom
-    } else {
-        zoomHistorico.push(zoomHistorico[zoomHistorico.length - 1]); // Mantém zoom
-    }
-
     etapa++;
     document.getElementById('iterator_step').textContent = `Etapa: ${etapa}`;
-    desenharFractal(stringAtual, zoomHistorico[etapa]);
+    desenharFractal(stringAtual);
 });
 
 // Evento para retroceder iteração
 document.getElementById('btnRetroceder').addEventListener('click', () => {
     if (etapa > 0) {
         historico.pop(); // Remove a última string gerada
-        zoomHistorico.pop(); // Remove o zoom correspondente
         stringAtual = historico[historico.length - 1]; // Volta para a string anterior
         etapa--;
         document.getElementById('iterator_step').textContent = `Etapa: ${etapa}`;
-        desenharFractal(stringAtual, zoomHistorico[etapa]);
+        desenharFractal(stringAtual);
     } 
+});
+
+// Evento para controlar o zoom com o scroll
+canvas.addEventListener('wheel', (event) => {
+    event.preventDefault();
+
+    // Posição do mouse relativa ao canvas
+    const mouseX = (event.offsetX - canvas.width / 2) / escalaFractal - offsetX;
+    const mouseY = (event.offsetY - canvas.height / 2) / escalaFractal - offsetY;
+
+    // Ajusta o zoom
+    const zoomStep = 0.1;
+    const prevScale = escalaFractal;
+    if (event.deltaY < 0) {
+        escalaFractal *= 1 + zoomStep; // Zoom in
+    } else {
+        escalaFractal *= 1 - zoomStep; // Zoom out
+    }
+
+    // Limita o zoom mínimo e máximo
+    escalaFractal = Math.max(0.1, Math.min(escalaFractal, 5));
+
+    // Ajusta o deslocamento para manter o zoom focado no ponto do mouse
+    offsetX -= mouseX * (escalaFractal - prevScale);
+    offsetY -= mouseY * (escalaFractal - prevScale);
+
+    desenharFractal(stringAtual);
+});
+
+// Evento para clicar e arrastar
+canvas.addEventListener('mousedown', (event) => {
+    isDragging = true;
+    dragStartX = event.offsetX / escalaFractal - offsetX;
+    dragStartY = event.offsetY / escalaFractal - offsetY;
+});
+
+canvas.addEventListener('mousemove', (event) => {
+    if (isDragging) {
+        offsetX = event.offsetX / escalaFractal - dragStartX;
+        offsetY = event.offsetY / escalaFractal - dragStartY;
+        desenharFractal(stringAtual);
+    }
+});
+
+canvas.addEventListener('mouseup', () => {
+    isDragging = false;
+});
+
+canvas.addEventListener('mouseleave', () => {
+    isDragging = false;
 });
 
 // Inicializa o fractal com o valor inicial do input
