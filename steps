@@ -1,0 +1,29 @@
+5 partes:
+
+1 a - Floco de neve onda quadrada de von Koch
+
+1 b - Preenchimento de espaço de Hilbert
+
+1 c - Um fractal definido por você que gere uma cadeia de polígonos simples que tenha pelo
+    menos duas regras como as curvas de preenchimento de espaço de Peano e Hilbert.
+
+2 - Discuta essas duas estratégias e outras que você considerou, analisando pontos positivos e
+    negativos de cada uma.
+
+3 - 
+Para cada um dos fractais implementados, apresente a equação de recorrência para calcular
+a quantidade de segmentos F gerados e a quantidade de símbolos existentes em cada estágio.
+Para o fractal de floco de neve clássico de von Koch, esses valores são apresentados na
+Tabela 2, mas não as equações de recorrência que levam a esses valores, o que deve ser feito
+aqui.
+
+Sugestão: para os fractais das letras (ii) e (iii) acima, para o caso da quantidade de símbolos,
+tente fazer as equações de recorrência considerando tudo (símbolos F, -, +, X e Y) e depois
+sem os símbolos F.
+
+4 - Apresente a complexidade de seus algoritmos considerando a notação assintótica mais precisa possível.
+
+5 - Investigue as opções de software (preferencialmente grátis) para desenhar os fractais gerados
+    e discuta brevemente aqui. Apresente uma figura com os primeiros quatro estágios de pelo
+    menos o fractal que você propôs na letra (iii) acima.
+

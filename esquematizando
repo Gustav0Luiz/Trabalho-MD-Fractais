@@ -1,0 +1,21 @@
+primeira parte : geração dos fractais
+
+floco simples:
+
+onde tiver F troca por F...
+
+AXIOMA:
+THETA:
+REGRAS:
+
+Floco complexo:
+
+onde tiver x troca por x...
+onde tiver y troca por y...
+
+ao final remove X e Y e junta todos os caracteres.
+
+
+input: AXIOMA
+input : Angulo 
+input regras: 
