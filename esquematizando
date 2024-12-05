@@ -1,21 +1,17 @@
-primeira parte : geração dos fractais
 
-floco simples:
+Submissão:
+A entrega deve ser realizada por meio de um arquivo compactado no formato .zip, contendo:
+- Um arquivo do código-fonte no formato .c;
+- Um arquivo de documentação no formato .pdf;
+- Um arquivo leiame.txt como informações sobre o ambiente computacional para executar o seu TP bem como todas as instruções necessárias.
 
-onde tiver F troca por F...
+Sobre o programa:
+Entrada: Um inteiro representando o estágio desejado.
+Saída: Três arquivos .txt (com os nomes: i.txt, ii.txt e iii.txt), um para cada fractal, salvando a sequência de caracteres do estágio requisitado pela entrada.
 
-AXIOMA:
-THETA:
-REGRAS:
+A documentação, que somente será aceita no formato PDF, deve conter:
+- Descrição de cada uma das três implementações e das estratégias escolhidas para tal (recursividade, iteratividade);
+- Apresentação da complexidade de seus algoritmos considerando a notação assintótica mais precisa possível;
+- Para cada um dos fractais implementados, apresente a equação de recorrência para calcular a quantidade de segmentos F gerados e a quantidade de símbolos existentes em cada estágio;
 
-Floco complexo:
-
-onde tiver x troca por x...
-onde tiver y troca por y...
-
-ao final remove X e Y e junta todos os caracteres.
-
-
-input: AXIOMA
-input : Angulo 
-input regras: 
+- Figuras dos primeiros quatro estágios do fractal proposto por você (fractal iii). Além disso, é necessário incluir uma descrição detalhada do processo de criação e do software utilizado para gerar as imagens.
