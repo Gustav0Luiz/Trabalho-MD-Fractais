@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Fractal</title>
+    <link rel="stylesheet" href="image.css">
+</head>
+<body>
+    <div class="page-container">
+        <section class="form-container">
+            <h1>Gerador de Fractais</h1>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="file-input" class="input">Arquivo:</label>
+                    <input type="file" id="file-input" class="item-input">
+                </div>
+                <div class="form-group">
+                    <label for="angle-input" class="input">Ângulo:</label>
+                    <input type="number" value="90" id="angle-input" class="item-input" placeholder="Ângulo">
+                </div>
+            </div>
+            <button id="generate-button">Gerar</button>
+        </section>
+        <section class="canvas-container">
+            <canvas id="canvasFractal" width="800" height="600"></canvas>
+            <button id="reset-button" class="reset-button">Recentralizar</button>
+            <button id="zoom-in-button" class="zoom-button">+</button>
+            <button id="zoom-out-button" class="zoom-button">-</button>
+        </section>
+        
+    </div>
+
+    <footer>
+        <p>Desenvolvido por Gustavo Luiz</p>
+    </footer>
+
+    <script src="image.js"></script>
+</body>
+</html>
