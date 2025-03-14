@@ -1,0 +1,11 @@
+Instruções:
+
+- abra o diretório com os arquivos do trabalho no console e compile o código:
+
+    "gcc -Wall -o trabalho trabalho.c"
+
+- Em seguida execute o arquivo executável gerado.
+
+- Após a execução o programa esperará a entrada de um inteiro que definirá a quantidade de iterações.
+
+- Após entrar com um número serão gerados 3 arquivos de texto.
